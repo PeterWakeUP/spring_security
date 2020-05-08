@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+<h2>自定义登录页面</h2>
+<form>
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" name="username" id="username"></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="password" name="password" id="password"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button onclick="f()">登录</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    function f() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            type : "POST", //提交方式
+            url : "/user/login",//路径
+            data : {
+                "username":username,
+                "password":password
+            },//数据，这里使用的是Json格式进行传输
+            success : function(result) {//返回数据根据结果进行相应的处理
+                debugger
+                window.location.href = "main.html"
+            },
+            error : function (result) {
+                debugger
+                window.location.href = "main.html"
+            }
+        });
+    }
+</script>
